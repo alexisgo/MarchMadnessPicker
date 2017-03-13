@@ -1,4 +1,5 @@
 from sets import Set
+import csv 
 
 class Bracket(object):
     def __init__(self, starting_teams):
@@ -26,11 +27,11 @@ def parse_teams(filename):
     
     # read from a csv of teams to parse them into a dict with just their ids
     with open(filename, 'r') as f:
-        read_data = f.read().split("\n")
-        for d in read_data:
-            data = d.split(",")
-            if (data):
-                team = Team(data[0], data[1], data[2], "alive")          
+        reader = csv.reader(f)
+        next(reader, None) #skip header row
+        for row in reader:
+            if (row):
+                team = Team(row[0], row[1], row[2], "alive")          
                 starting_teams.append(team)
     f.closed
 
