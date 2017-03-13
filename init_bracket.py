@@ -1,4 +1,3 @@
-from sets import Set
 import csv 
 
 class Bracket(object):
@@ -25,7 +24,6 @@ class Matchup(object):
 def parse_teams(filename):
     starting_teams = []
     
-    # read from a csv of teams to parse them into a dict with just their ids
     with open(filename, 'r') as f:
         reader = csv.reader(f)
         next(reader, None) #skip header row
@@ -71,6 +69,7 @@ def main():
     matchups = build_matchups(starting_teams)
     for m in matchups:
         print("Matchup: {0} vs {1} - {2}".format(m.team1.name,m.team2.name,m.date))
+    # to-do: loop through matches and call pick_winner on each    
     # to-do: loop through the initial data, and fill in with specific stats
 
 if __name__ == "__main__":
